@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: AI Research Assistant API
+  description: An API that uses an AI model to research and summarize web pages.
+  version: v1.0.0
+servers:
+  # This URL will be replaced with your new Vercel deployment URL.
+  - url: https://your-research-project-name.vercel.app 
+paths:
+  /api/research:
+    post:
+      summary: Research Web Page
+      description: Scrapes a given URL for text and uses an AI to answer a user's query based on that text.
+      operationId: researchWebPage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - url
+                - query
+              properties:
+                url:
+                  type: string
+                  description: The full URL of the webpage to research.
+                query:
+                  type: string
+                  description: The user's question or what to summarize from the text.
+      responses:
+        "200":
+          description: The research summary was successfully generated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary:
+                    type: string
+                    description: The AI-generated answer or summary.
